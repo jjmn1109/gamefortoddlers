@@ -21,6 +21,9 @@ function playGame(gameId) {
             case 'color-matching':
                 window.location.href = 'color-matching.html';
                 break;
+            case 'shape-sorter':
+                window.location.href = 'shape-sorter.html';
+                break;
             case 'counting':
                 window.location.href = 'counting-fun.html';
                 break;
@@ -57,7 +60,7 @@ function getGameTitle(gameId) {
         'pop-bubbles': 'Pop the Bubbles',
         'counting': 'Counting Fun',
         'color-matching': 'Color Matching',
-        'shapes': 'Shape Sorter'
+        'shape-sorter': 'Shape Sorter'
     };
     return titles[gameId] || 'Game';
 }
