@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop the Bubbles - Educational Game for Toddlers</title>
+    <link rel="stylesheet" href="pop-bubbles-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <div class="header">
+            <button id="back-to-menu" class="back-button">🏠 Back to Menu</button>
+            <div class="game-info">
+                <div class="level-display">
+                    <span class="label">Level:</span>
+                    <span id="current-level">1</span>
+                </div>
+                <div class="score-display">
+                    <span class="label">Score:</span>
+                    <span id="score">0</span> pts
+                </div>
+                <div class="bubbles-display">
+                    <span class="label">Bubbles:</span>
+                    <span id="bubbles-popped">0</span>/<span id="target-score">10</span>
+                </div>
+                <div class="timer-display">
+                    <span class="label">Time:</span>
+                    <span id="timer">60</span>s
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div class="game-area" id="game-area">
+            <div class="instruction" id="instruction">
+                🫧 Tap the bubbles to pop them! 🫧
+            </div>
+            
+            <!-- Bubbles will be dynamically created here -->
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button id="new-game-btn" class="control-btn">🆕 New Game</button>
+            <button id="pause-btn" class="control-btn">⏸️ Pause</button>
+        </div>
+
+        <!-- Level Complete Modal -->
+        <div id="celebration" class="modal">
+            <div class="modal-content celebration-content">
+                <h2 id="celebration-title">🎉 Level Complete! 🎉</h2>
+                <p id="celebration-message">Amazing! You popped all the bubbles!</p>
+                <div class="celebration-stats">
+                    <div class="stat">
+                        <span class="stat-label">Bubbles Popped:</span>
+                        <span id="level-bubbles">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Time Bonus:</span>
+                        <span id="time-bonus">0</span> points
+                    </div>
+                </div>
+                <button id="next-level-btn" class="modal-btn primary">➡️ Next Level</button>
+                <button id="replay-level-btn" class="modal-btn">🔄 Play Again</button>
+            </div>
+        </div>
+
+        <!-- Game Complete Modal -->
+        <div id="game-complete" class="modal">
+            <div class="modal-content completion-content">
+                <h2>🏆 Congratulations! 🏆</h2>
+                <p>You completed all levels!</p>
+                <div class="final-stats">
+                    <div class="stat">
+                        <span class="stat-label">Total Bubbles Popped:</span>
+                        <span id="total-bubbles">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Final Score:</span>
+                        <span id="final-score">0</span>
+                    </div>
+                </div>
+                <button id="play-again-btn" class="modal-btn primary">🎮 Play Again</button>
+                <button id="menu-btn" class="modal-btn">🏠 Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div id="game-over" class="modal">
+            <div class="modal-content game-over-content">
+                <h2>⏰ Time's Up! ⏰</h2>
+                <p id="game-over-message">Good try! You popped some bubbles!</p>
+                <div class="game-over-stats">
+                    <div class="stat">
+                        <span class="stat-label">Bubbles Popped:</span>
+                        <span id="game-over-bubbles">0</span>
+                    </div>
+                </div>
+                <button id="try-again-btn" class="modal-btn primary">🔄 Try Again</button>
+                <button id="game-over-menu-btn" class="modal-btn">🏠 Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- Pause Modal -->
+        <div id="pause-modal" class="modal">
+            <div class="modal-content pause-content">
+                <h2>⏸️ Game Paused</h2>
+                <p>Take a break! The bubbles are waiting for you.</p>
+                <button id="resume-btn" class="modal-btn primary">▶️ Resume</button>
+                <button id="pause-menu-btn" class="modal-btn">🏠 Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pop-bubbles-script.js"></script>
+</body>
+</html>

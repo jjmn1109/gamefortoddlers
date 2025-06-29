@@ -1,0 +1,473 @@
+/* Pop the Bubbles Game Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #FFB6C1 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Animated background bubbles */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.08) 3px, transparent 3px);
+    animation: floatBg 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes floatBg {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Game container and layout */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Header */
+.header {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.back-button {
+    background: linear-gradient(45deg, #fd79a8, #e84393);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    touch-action: manipulation;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.game-info {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.level-display, .score-display, .bubbles-display, .timer-display {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.label {
+    margin-right: 5px;
+}
+
+/* Game Area */
+.game-area {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.instruction {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #FF6B6B;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.control-btn {
+    background: linear-gradient(45deg, #FFD93D, #FF8C42);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    touch-action: manipulation;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Game Area */
+.game-area {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+/* Bubbles */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        inset -10px -10px 20px rgba(255, 255, 255, 0.3),
+        inset 10px 10px 20px rgba(0, 0, 0, 0.1),
+        0 4px 15px rgba(0, 0, 0, 0.2);
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), transparent 60%);
+    animation: float 3s ease-in-out infinite;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-10px) scale(1.05); }
+}
+
+.bubble::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 30%;
+    height: 30%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.bubble.small {
+    width: 60px;
+    height: 60px;
+}
+
+.bubble.medium {
+    width: 80px;
+    height: 80px;
+}
+
+.bubble.large {
+    width: 100px;
+    height: 100px;
+}
+
+.bubble.color-1 { background-color: rgba(255, 107, 107, 0.8); }
+.bubble.color-2 { background-color: rgba(78, 205, 196, 0.8); }
+.bubble.color-3 { background-color: rgba(255, 217, 61, 0.8); }
+.bubble.color-4 { background-color: rgba(162, 155, 254, 0.8); }
+.bubble.color-5 { background-color: rgba(255, 140, 66, 0.8); }
+.bubble.color-6 { background-color: rgba(253, 121, 168, 0.8); }
+
+.bubble:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.bubble:active {
+    transform: scale(0.9);
+}
+
+/* Pop animation */
+.bubble.popping {
+    animation: popBubble 0.3s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes popBubble {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.7; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* Special bubbles */
+.bubble.golden {
+    background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.9), rgba(255, 140, 0, 0.8));
+    box-shadow: 
+        inset -10px -10px 20px rgba(255, 255, 255, 0.5),
+        inset 10px 10px 20px rgba(255, 140, 0, 0.3),
+        0 4px 20px rgba(255, 215, 0, 0.6);
+    animation: goldenGlow 2s ease-in-out infinite;
+}
+
+@keyframes goldenGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+    50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.9); }
+}
+
+.bubble.rainbow {
+    background: conic-gradient(
+        from 0deg,
+        #ff0000, #ff8000, #ffff00, #80ff00, #00ff00,
+        #00ff80, #00ffff, #0080ff, #0000ff, #8000ff,
+        #ff00ff, #ff0080, #ff0000
+    );
+    animation: rainbowSpin 3s linear infinite, float 3s ease-in-out infinite;
+}
+
+@keyframes rainbowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal h2 {
+    color: #FF6B6B;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal p {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-btn {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    touch-action: manipulation;
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.modal-btn.secondary {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+}
+
+.modal-btn.primary {
+    background: linear-gradient(45deg, #FF6B6B, #ee5a52);
+}
+
+/* Celebration effects */
+.celebration-emoji {
+    font-size: 3rem;
+    animation: bounce 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+/* Progress bar */
+.progress-container {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    height: 8px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 1.5rem;
+    }
+    
+    .game-stats {
+        gap: 10px;
+    }
+    
+    .stat-item {
+        font-size: 1rem;
+        padding: 6px 12px;
+        min-width: 60px;
+    }
+    
+    .control-btn {
+        font-size: 1rem;
+        padding: 10px 15px;
+        min-width: 80px;
+    }
+    
+    .bubble.small { width: 50px; height: 50px; }
+    .bubble.medium { width: 70px; height: 70px; }
+    .bubble.large { width: 90px; height: 90px; }
+    
+    .modal h2 {
+        font-size: 2rem;
+    }
+    
+    .modal p {
+        font-size: 1.1rem;
+    }
+    
+    .modal-btn {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .game-title {
+        font-size: 1.3rem;
+    }
+    
+    .bubble.small { width: 45px; height: 45px; }
+    .bubble.medium { width: 60px; height: 60px; }
+    .bubble.large { width: 75px; height: 75px; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .bubble,
+    .modal-content,
+    .control-btn,
+    .modal-btn,
+    body::before {
+        animation: none;
+        transition: none;
+    }
+    
+    .bubble:hover {
+        transform: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .bubble {
+        border: 3px solid #000;
+    }
+    
+    .control-btn,
+    .modal-btn {
+        border: 2px solid #000;
+    }
+}

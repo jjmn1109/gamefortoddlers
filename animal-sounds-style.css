@@ -1,0 +1,428 @@
+/* Animal Sounds Game Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.game-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 900px;
+    width: 100%;
+    min-height: 600px;
+}
+
+/* Header styles */
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-header h1 {
+    color: #9C27B0;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: titlePulse 2s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.level-info {
+    display: flex;
+    justify-content: space-around;
+    background: #E8EAF6;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: 3px solid #3F51B5;
+}
+
+.level-info .level {
+    color: #3F51B5;
+}
+
+.level-info .score {
+    color: #4CAF50;
+}
+
+.instruction {
+    background: linear-gradient(45deg, #FFF3E0, #FFE0B2);
+    padding: 15px;
+    border-radius: 15px;
+    border: 3px solid #FF9800;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #E65100;
+    animation: instructionGlow 3s ease-in-out infinite;
+}
+
+@keyframes instructionGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 152, 0, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(255, 152, 0, 0.6); }
+}
+
+/* Sound Section */
+.sound-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.sound-button {
+    background: linear-gradient(45deg, #9C27B0, #E1BEE7);
+    border: none;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3);
+    border: 4px solid #7B1FA2;
+}
+
+.sound-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 25px rgba(156, 39, 176, 0.4);
+}
+
+.sound-button:active {
+    transform: scale(0.95);
+}
+
+.sound-button.playing {
+    animation: soundPlaying 0.5s ease infinite alternate;
+}
+
+@keyframes soundPlaying {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
+}
+
+.sound-icon {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.sound-text {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.sound-waves {
+    display: none;
+    gap: 5px;
+    align-items: center;
+}
+
+.sound-waves.active {
+    display: flex;
+}
+
+.wave {
+    width: 4px;
+    height: 20px;
+    background: #9C27B0;
+    border-radius: 2px;
+    animation: wave 1s ease-in-out infinite;
+}
+
+.wave:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.wave:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes wave {
+    0%, 100% { height: 20px; }
+    50% { height: 40px; }
+}
+
+/* Animals Grid */
+.animals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(45deg, #F3E5F5, #E8EAF6);
+    border-radius: 15px;
+    border: 3px dashed #9C27B0;
+}
+
+.animal-option {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid #E0E0E0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.animal-option:hover {
+    transform: translateY(-5px);
+    border-color: #9C27B0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.animal-option.correct {
+    animation: correctAnswer 0.8s ease;
+    background: #4CAF50;
+    color: white;
+    border-color: #2E7D32;
+}
+
+.animal-option.wrong {
+    animation: wrongAnswer 0.5s ease;
+}
+
+@keyframes correctAnswer {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1.1); }
+}
+
+@keyframes wrongAnswer {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.animal-emoji {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.animal-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.animal-option.correct .animal-name {
+    color: white;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-back,
+.btn-new-game,
+.btn-repeat,
+.btn-play-again,
+.btn-next-level {
+    background: linear-gradient(45deg, #9C27B0, #E1BEE7);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-back {
+    background: linear-gradient(45deg, #757575, #9E9E9E);
+}
+
+.btn-repeat {
+    background: linear-gradient(45deg, #FF9800, #FFB74D);
+}
+
+.btn-new-game {
+    background: linear-gradient(45deg, #4CAF50, #66BB6A);
+}
+
+.btn-next-level {
+    background: linear-gradient(45deg, #2196F3, #42A5F5);
+}
+
+.btn-back:hover,
+.btn-new-game:hover,
+.btn-repeat:hover,
+.btn-play-again:hover,
+.btn-next-level:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modals */
+.celebration,
+.game-complete {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.celebration.show,
+.game-complete.show {
+    display: flex;
+}
+
+.celebration-content,
+.game-complete-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    animation: modalAppear 0.5s ease;
+    max-width: 90%;
+}
+
+@keyframes modalAppear {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.celebration-content h2,
+.game-complete-content h2 {
+    color: #9C27B0;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.celebration-content p,
+.game-complete-content p {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.celebration-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-header h1 {
+        font-size: 2rem;
+    }
+    
+    .level-info {
+        font-size: 1.1rem;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .animals-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .animal-emoji {
+        font-size: 2.5rem;
+    }
+    
+    .sound-button {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .sound-icon {
+        font-size: 2.5rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    .game-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .animals-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .animal-option {
+        padding: 15px;
+    }
+    
+    .btn-back,
+    .btn-new-game,
+    .btn-repeat,
+    .btn-play-again,
+    .btn-next-level {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}

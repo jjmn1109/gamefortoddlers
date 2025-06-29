@@ -1,0 +1,39 @@
+{
+  "name": "find-animals-game",
+  "version": "1.0.0",
+  "description": "A delightful 'Find Waldo' style game designed specifically for 2-year-olds to help develop observation skills and animal recognition",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/index.html",
+    "dev": "live-server --port=3000 --open=/index.html --watch=.",
+    "build": "echo 'No build process needed for this vanilla HTML/CSS/JS project'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [
+    "kids",
+    "toddlers",
+    "game",
+    "educational",
+    "animals",
+    "find-waldo",
+    "web-game",
+    "html5",
+    "vanilla-js"
+  ],
+  "author": "Find Animals Game",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "iOS >= 12",
+    "Safari >= 12"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "."
+  }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Learning Games for Little Ones</title>
+    <link rel="stylesheet" href="menu-style.css">
+</head>
+<body>
+    <div class="menu-container">
+        <header class="menu-header">
+            <h1>🎮 Fun Learning Games 🎮</h1>
+            <p>Perfect games for 2-year-olds to learn and play!</p>
+        </header>
+        
+        <div class="games-grid">
+            <div class="game-card" data-game="find-animals">
+                <div class="game-icon">🎯</div>
+                <h3>Find the Animals</h3>
+                <p>Look for hidden animals in the scene. Great for observation skills!</p>
+                <div class="game-features">
+                    <span class="feature">🐶 Animal Recognition</span>
+                    <span class="feature">👀 Observation</span>
+                    <span class="feature">⏰ Timed Levels</span>
+                </div>
+                <button class="play-btn" onclick="playGame('find-animals')">
+                    🎮 Play Now
+                </button>
+            </div>
+            
+            <div class="game-card" data-game="animal-sounds">
+                <div class="game-icon">🔊</div>
+                <h3>Animal Sounds</h3>
+                <p>Listen to animal sounds and match them to the right animal!</p>
+                <div class="game-features">
+                    <span class="feature">🎵 Sound Learning</span>
+                    <span class="feature">🐄 Animal Names</span>
+                    <span class="feature">👂 Listening Skills</span>
+                </div>
+                <button class="play-btn" onclick="playGame('animal-sounds')">
+                    🎮 Play Now
+                </button>
+            </div>
+            
+            <div class="game-card" data-game="pop-bubbles">
+                <div class="game-icon">🫧</div>
+                <h3>Pop the Bubbles</h3>
+                <p>Pop colorful bubbles as they float around! Fun and satisfying!</p>
+                <div class="game-features">
+                    <span class="feature">🫧 Bubble Popping</span>
+                    <span class="feature">🎯 Hand-Eye Coordination</span>
+                    <span class="feature">⭐ Special Bubbles</span>
+                </div>
+                <button class="play-btn" onclick="playGame('pop-bubbles')">
+                    🎮 Play Now
+                </button>
+            </div>
+            
+            <div class="game-card" data-game="color-matching">
+                <div class="game-icon">🌈</div>
+                <h3>Color Matching</h3>
+                <p>Match objects to their correct colors. Perfect for color learning!</p>
+                <div class="game-features">
+                    <span class="feature">🎨 Color Recognition</span>
+                    <span class="feature">🧩 Matching</span>
+                    <span class="feature">✋ Hand-Eye Coordination</span>
+                </div>
+                <button class="play-btn" onclick="playGame('color-matching')">
+                    🎮 Play Now
+                </button>
+            </div>
+            
+            <div class="game-card coming-soon" data-game="shapes">
+                <div class="game-icon">🔺</div>
+                <h3>Shape Sorter</h3>
+                <p>Sort shapes into their matching holes. Learn shapes and problem solving!</p>
+                <div class="game-features">
+                    <span class="feature">📐 Shape Recognition</span>
+                    <span class="feature">🧠 Problem Solving</span>
+                    <span class="feature">🎯 Precision</span>
+                </div>
+                <button class="play-btn disabled">
+                    🚧 Coming Soon
+                </button>
+            </div>
+            
+            <div class="game-card" data-game="counting">
+                <div class="game-icon">🔢</div>
+                <h3>Counting Fun</h3>
+                <p>Count objects from 1 to 9. Introduction to numbers and counting!</p>
+                <div class="game-features">
+                    <span class="feature">🔢 Numbers 1-9</span>
+                    <span class="feature">🧮 Interactive Counting</span>
+                    <span class="feature">🧠 Early Math Skills</span>
+                </div>
+                <button class="play-btn" onclick="playGame('counting')">
+                    🎮 Play Now
+                </button>
+            </div>
+        </div>
+        
+        <footer class="menu-footer">
+            <p>🌟 Designed with love for curious little minds 🌟</p>
+            <div class="age-info">
+                <span class="age-badge">👶 Ages 2-4</span>
+                <span class="age-badge">📱 Touch Friendly</span>
+                <span class="age-badge">🔊 Audio Enabled</span>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="menu-script.js"></script>
+</body>
+</html>

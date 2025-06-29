@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Animals Game - For Little Ones</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>🎯 Find the Animals! 🎯</h1>
+            <div class="game-info">
+                <div class="level-info">
+                    <span class="level">Level: <span id="current-level">1</span></span>
+                    <span class="timer">Time: <span id="timer">60</span>s</span>
+                </div>
+                <div class="score-board">
+                    <span class="score">Found: <span id="score">0</span>/<span id="total-animals">5</span></span>
+                    <span class="target">Find the: <span id="target-animal">🐶</span></span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="game-area" id="game-area">
+            <!-- Animals will be dynamically placed here -->
+        </div>
+        
+        <div class="controls">
+            <button class="btn-back" id="back-btn" onclick="window.gameMenu.backToMenu()">⬅️ Back to Menu</button>
+            <button class="btn-new-game" id="new-game-btn">🎮 New Game</button>
+            <button class="btn-hint" id="hint-btn">💡 Help Me!</button>
+        </div>
+        
+        <div class="celebration" id="celebration">
+            <div class="celebration-content">
+                <h2 id="celebration-title">🎉 Great Job! 🎉</h2>
+                <p id="celebration-message">You found all the animals!</p>
+                <div class="celebration-buttons">
+                    <button class="btn-next-level" id="next-level-btn">🚀 Next Level</button>
+                    <button class="btn-play-again" id="play-again-btn">🔄 Play Again</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-over" id="game-over">
+            <div class="game-over-content">
+                <h2>⏰ Time's Up! ⏰</h2>
+                <p>You reached Level <span id="final-level">1</span>!</p>
+                <p>Animals found: <span id="final-score">0</span></p>
+                <button class="btn-play-again" id="restart-btn">🎮 Try Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="menu-script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+/* Menu page styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #FF9A9E, #FECFEF, #FECFEF, #A8E6CF);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 4px solid #FFD93D;
+}
+
+.menu-header h1 {
+    font-size: 3.5rem;
+    color: #FF6B6B;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    animation: titleBounce 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleBounce {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.menu-header p {
+    font-size: 1.5rem;
+    color: #666;
+    font-weight: bold;
+}
+
+/* Games Grid */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.game-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    border: 4px solid #4ECDC4;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.game-card.coming-soon {
+    border-color: #DDD;
+    background: #F9F9F9;
+    opacity: 0.7;
+}
+
+.game-card.coming-soon:hover {
+    transform: translateY(-5px);
+}
+
+.game-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.game-card h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.game-card p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.game-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.feature {
+    background: linear-gradient(45deg, #FFE0B2, #FFCC80);
+    color: #D84315;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 2px solid #FFB74D;
+}
+
+.play-btn {
+    background: linear-gradient(45deg, #4CAF50, #66BB6A);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    font-family: inherit;
+}
+
+.play-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+}
+
+.play-btn:active {
+    transform: translateY(0);
+}
+
+.play-btn.disabled {
+    background: #CCC;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.play-btn.disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Special styling for active games */
+.game-card[data-game="find-animals"] {
+    border-color: #FF6B6B;
+}
+
+.game-card[data-game="find-animals"] .play-btn {
+    background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.game-card[data-game="animal-sounds"] {
+    border-color: #9C27B0;
+}
+
+.game-card[data-game="animal-sounds"] .play-btn {
+    background: linear-gradient(45deg, #9C27B0, #BA68C8);
+    box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+}
+
+/* Footer */
+.menu-footer {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.menu-footer p {
+    font-size: 1.3rem;
+    color: #FF6B6B;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.age-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.age-badge {
+    background: linear-gradient(45deg, #E3F2FD, #BBDEFB);
+    color: #1565C0;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 2px solid #2196F3;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .menu-header p {
+        font-size: 1.2rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .game-card {
+        padding: 20px;
+    }
+    
+    .game-icon {
+        font-size: 3rem;
+    }
+    
+    .game-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .age-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .menu-header {
+        padding: 20px;
+    }
+    
+    .menu-header h1 {
+        font-size: 2rem;
+    }
+    
+    .game-card {
+        padding: 15px;
+    }
+    
+    .play-btn {
+        font-size: 1.1rem;
+        padding: 12px 24px;
+    }
+    
+    .feature {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+}
+
+/* Loading animation for game transitions */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading.show {
+    display: flex;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    font-size: 4rem;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    color: #666;
+    margin-top: 20px;
+}

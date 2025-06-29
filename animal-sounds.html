@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Sounds Game - For Little Ones</title>
+    <link rel="stylesheet" href="animal-sounds-style.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>🔊 Animal Sounds Game 🔊</h1>
+            <div class="game-info">
+                <div class="level-info">
+                    <span class="level">Level: <span id="current-level">1</span></span>
+                    <span class="score">Score: <span id="score">0</span>/5</span>
+                </div>
+                <div class="instruction">
+                    <span id="instruction-text">🎵 Listen to the sound and click the right animal! 🎵</span>
+                </div>
+            </div>
+        </header>
+        
+        <div class="sound-section">
+            <button class="sound-button" id="play-sound-btn">
+                <div class="sound-icon">🔊</div>
+                <div class="sound-text">Play Sound</div>
+            </button>
+            <div class="sound-waves" id="sound-waves">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
+        
+        <div class="animals-grid" id="animals-grid">
+            <!-- Animal options will be dynamically added here -->
+        </div>
+        
+        <div class="controls">
+            <button class="btn-back" onclick="window.gameMenu.backToMenu()">⬅️ Back to Menu</button>
+            <button class="btn-new-game" id="new-game-btn">🎮 New Game</button>
+            <button class="btn-repeat" id="repeat-btn">🔄 Repeat Sound</button>
+        </div>
+        
+        <div class="celebration" id="celebration">
+            <div class="celebration-content">
+                <h2 id="celebration-title">🎉 Great Job! 🎉</h2>
+                <p id="celebration-message">You matched the sound correctly!</p>
+                <div class="celebration-buttons">
+                    <button class="btn-next-level" id="next-level-btn">🚀 Next Level</button>
+                    <button class="btn-play-again" id="play-again-btn">🔄 Play Again</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-complete" id="game-complete">
+            <div class="game-complete-content">
+                <h2>🏆 Amazing! You're a Sound Expert! 🏆</h2>
+                <p>You completed all levels!</p>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button class="btn-play-again" id="restart-btn">🎮 Play Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="menu-script.js"></script>
+    <script src="animal-sounds-script.js"></script>
+</body>
+</html>

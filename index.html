@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Learning Games for Little Ones</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #FF9A9E, #FECFEF);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .redirect-container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #FF6B6B;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .spinner {
+            font-size: 3rem;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        // Redirect to menu page immediately
+        setTimeout(() => {
+            window.location.href = 'menu.html';
+        }, 2000);
+    </script>
+</head>
+<body>
+    <div class="redirect-container">
+        <h1>🎮 Fun Learning Games 🎮</h1>
+        <p>Loading game menu...</p>
+        <div class="spinner">�</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,525 @@
+/* Counting Fun Game Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+    background: linear-gradient(135deg, #FFE066 0%, #FF6B6B 50%, #4ECDC4 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated background numbers */
+body::before {
+    content: '1 2 3 4 5 6 7 8 9 0 1 2 3 4 5';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    animation: floatNumbers 30s linear infinite;
+    white-space: pre-wrap;
+    word-spacing: 2rem;
+    line-height: 3rem;
+    padding: 2rem;
+}
+
+@keyframes floatNumbers {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+}
+
+/* Game container and layout */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Header */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.back-button {
+    background: linear-gradient(45deg, #fd79a8, #e84393);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    touch-action: manipulation;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.game-info {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.level-display, .score-display, .streak-display {
+    background: linear-gradient(45deg, #FFE066, #FF8C42);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 80px;
+}
+
+.label {
+    margin-right: 5px;
+}
+
+/* Game Area */
+.game-area {
+    flex: 1;
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    min-height: 450px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.instruction {
+    text-align: center;
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Objects Container */
+.objects-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    min-height: 200px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 3px dashed #FFE066;
+}
+
+.counting-object {
+    font-size: 3rem;
+    animation: bounceIn 0.6s ease-out;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.counting-object:hover {
+    transform: scale(1.2);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.counting-object.counted {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    color: white;
+    transform: scale(0.9);
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Question Area */
+.question-area {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: linear-gradient(45deg, #FFE066, #FF8C42);
+    color: white;
+    border-radius: 10px;
+}
+
+/* Number Options */
+.number-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.number-btn {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    touch-action: manipulation;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.number-btn:active {
+    transform: scale(0.95);
+}
+
+.number-btn.correct {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    animation: correctPulse 0.6s ease-out;
+}
+
+.number-btn.wrong {
+    background: linear-gradient(45deg, #FF6B6B, #ee5a52);
+    animation: wrongShake 0.5s ease-out;
+}
+
+@keyframes correctPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+@keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    background: linear-gradient(45deg, #FFD93D, #FF8C42);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    min-width: 120px;
+    touch-action: manipulation;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal h2 {
+    color: #FF6B6B;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modal p {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.celebration-stats, .final-stats, .game-over-stats {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.modal-btn {
+    background: linear-gradient(45deg, #4ECDC4, #44A08D);
+    border: none;
+    border-radius: 15px;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    min-width: 140px;
+    touch-action: manipulation;
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.modal-btn.primary {
+    background: linear-gradient(45deg, #FF6B6B, #ee5a52);
+}
+
+/* Hint Animation */
+.hint-content {
+    text-align: center;
+}
+
+#hint-animation {
+    font-size: 2rem;
+    margin: 20px 0;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hint-object {
+    font-size: 3rem;
+    animation: hintPulse 1s ease-in-out infinite;
+    margin: 5px;
+}
+
+.hint-number {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #FF6B6B;
+    animation: numberGlow 2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes numberGlow {
+    0%, 100% { text-shadow: 0 0 10px #FF6B6B; }
+    50% { text-shadow: 0 0 20px #FF6B6B, 0 0 30px #FF6B6B; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .game-info {
+        gap: 8px;
+    }
+    
+    .level-display, .score-display, .streak-display {
+        font-size: 1rem;
+        padding: 6px 12px;
+        min-width: 70px;
+    }
+    
+    .instruction {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
+    
+    .counting-object {
+        font-size: 2.5rem;
+        padding: 8px;
+    }
+    
+    .question-text {
+        font-size: 1.3rem;
+    }
+    
+    .number-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+    
+    .modal h2 {
+        font-size: 2rem;
+    }
+    
+    .modal p {
+        font-size: 1.1rem;
+    }
+    
+    .celebration-stats, .final-stats, .game-over-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .counting-object {
+        font-size: 2rem;
+    }
+    
+    .number-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .control-btn {
+        min-width: 200px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .number-btn, .control-btn, .modal-btn {
+        border: 3px solid #000;
+    }
+    
+    .counting-object {
+        border: 2px solid #000;
+    }
+}
