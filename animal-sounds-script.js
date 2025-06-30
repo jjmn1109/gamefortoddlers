@@ -382,7 +382,7 @@ function updateDisplay() {
     
     const instruction = document.getElementById('instruction-text');
     if (gameState.currentAnimal) {
-        instruction.textContent = `🎵 Listen for the ${gameState.currentAnimal.name} sound! 🎵`;
+        instruction.textContent = `🎵 Listen carefully and find the matching animal! 🎵`;
     }
 }
 
