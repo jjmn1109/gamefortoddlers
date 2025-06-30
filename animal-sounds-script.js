@@ -88,7 +88,8 @@ let gameState = {
     currentAnimal: null,
     gameAnimals: [],
     audioFiles: new Map(), // Cache for loaded audio files
-    isPlaying: false
+    isPlaying: false,
+    currentAudio: null // Track currently playing audio
 };
 
 // Real animal sound loading and playback system
@@ -166,7 +167,8 @@ async function loadRealAnimalSound(animal) {
 }
 
 async function playAnimalSound(animal) {
-    if (gameState.isPlaying) return;
+    // Stop any currently playing sound first
+    stopCurrentSound();
     
     const soundButton = document.getElementById('play-sound-btn');
     const soundWaves = document.getElementById('sound-waves');
@@ -180,6 +182,9 @@ async function playAnimalSound(animal) {
         
         // Load and play the real animal sound
         const audio = await loadRealAnimalSound(animal);
+        
+        // Store reference to current audio
+        gameState.currentAudio = audio;
         
         // Reset to beginning and play
         audio.currentTime = 0;
@@ -287,6 +292,9 @@ function playSimplePattern(audioContext, frequencies, durations, waveType = 'sin
 
 // Game logic functions
 function generateLevel() {
+    // Stop any currently playing sound from previous level
+    stopCurrentSound();
+    
     // Select animals for this level (3-5 options depending on level)
     const numOptions = Math.min(3 + gameState.currentLevel, 5);
     const shuffledAnimals = [...gameState.animals].sort(() => Math.random() - 0.5);
@@ -297,6 +305,13 @@ function generateLevel() {
     
     displayAnimals();
     updateDisplay();
+    
+    // Automatically play the sound after a short delay to let UI update
+    setTimeout(() => {
+        if (gameState.currentAnimal) {
+            playAnimalSound(gameState.currentAnimal);
+        }
+    }, 500);
 }
 
 function displayAnimals() {
@@ -318,8 +333,6 @@ function displayAnimals() {
 }
 
 function handleAnimalClick(selectedAnimal) {
-    if (gameState.isPlaying) return; // Don't allow clicks during sound playback
-    
     // Check if this animal element has already been clicked
     const animalElement = document.querySelector(`[data-animal="${selectedAnimal.name}"]`);
     if (animalElement.classList.contains('clicked') || animalElement.classList.contains('correct') || animalElement.classList.contains('wrong')) {
@@ -397,6 +410,9 @@ function updateDisplay() {
 }
 
 function startNewGame() {
+    // Stop any currently playing sound
+    stopCurrentSound();
+    
     gameState.currentLevel = 1;
     gameState.score = 0;
     hideCelebration();
@@ -412,11 +428,27 @@ function hideGameComplete() {
     document.getElementById('game-complete').classList.remove('show');
 }
 
+// Function to stop any currently playing sound
+function stopCurrentSound() {
+    if (gameState.currentAudio) {
+        gameState.currentAudio.pause();
+        gameState.currentAudio.currentTime = 0;
+        gameState.currentAudio = null;
+    }
+    
+    // Reset visual effects
+    const soundButton = document.getElementById('play-sound-btn');
+    const soundWaves = document.getElementById('sound-waves');
+    soundButton.classList.remove('playing');
+    soundWaves.classList.remove('active');
+    gameState.isPlaying = false;
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Sound button
     document.getElementById('play-sound-btn').addEventListener('click', () => {
-        if (gameState.currentAnimal && !gameState.isPlaying) {
+        if (gameState.currentAnimal) {
             playAnimalSound(gameState.currentAnimal);
         }
     });
@@ -424,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Control buttons
     document.getElementById('new-game-btn').addEventListener('click', startNewGame);
     document.getElementById('repeat-btn').addEventListener('click', () => {
-        if (gameState.currentAnimal && !gameState.isPlaying) {
+        if (gameState.currentAnimal) {
             playAnimalSound(gameState.currentAnimal);
         }
     });
@@ -440,7 +472,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === ' ' || e.key === 'Enter') {
         // Spacebar or Enter to play sound
         e.preventDefault();
-        if (gameState.currentAnimal && !gameState.isPlaying) {
+        if (gameState.currentAnimal) {
             playAnimalSound(gameState.currentAnimal);
         }
     } else if (e.key === 'n' || e.key === 'N') {
