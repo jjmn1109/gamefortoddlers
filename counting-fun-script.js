@@ -82,7 +82,6 @@ class CountingFunGame {
         
         // Modal buttons
         document.getElementById('next-level-btn').addEventListener('click', () => this.nextLevel());
-        document.getElementById('replay-level-btn').addEventListener('click', () => this.replayLevel());
         document.getElementById('play-again-btn').addEventListener('click', () => this.restart());
         document.getElementById('menu-btn').addEventListener('click', () => this.goHome());
         document.getElementById('try-again-btn').addEventListener('click', () => this.restart());

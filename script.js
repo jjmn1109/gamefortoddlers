@@ -167,6 +167,14 @@ function placeElements() {
 function handleAnimalClick(animalElement) {
     if (!gameState.isGameActive) return;
     
+    // Prevent multiple clicks on the same animal
+    if (animalElement.classList.contains('found') || animalElement.classList.contains('clicking')) {
+        return;
+    }
+    
+    // Add clicking class to prevent rapid clicks
+    animalElement.classList.add('clicking');
+    
     playClickSound();
     
     const clickedAnimal = animalElement.dataset.animal;
@@ -185,6 +193,9 @@ function handleAnimalClick(animalElement) {
             el.classList.remove('target');
         });
         
+        // Remove clicking class since this animal is now found
+        animalElement.classList.remove('clicking');
+        
         setTimeout(() => {
             if (gameState.score >= gameState.totalAnimals) {
                 completeLevel();
@@ -200,6 +211,8 @@ function handleAnimalClick(animalElement) {
         setTimeout(() => {
             animalElement.style.animation = '';
             animalElement.style.transform = '';
+            // Remove clicking class after feedback animation
+            animalElement.classList.remove('clicking');
         }, 200);
     }
 }
@@ -243,11 +256,13 @@ function completeLevel() {
         document.getElementById('celebration-title').textContent = '🏆 You Won! 🏆';
         document.getElementById('celebration-message').textContent = 'You completed all levels! You are amazing!';
         document.getElementById('next-level-btn').style.display = 'none';
+        document.getElementById('celebration-new-game-btn').style.display = 'inline-block';
     } else {
         // Level completed, can advance
         document.getElementById('celebration-title').textContent = `🎉 Level ${gameState.currentLevel} Complete! 🎉`;
         document.getElementById('celebration-message').textContent = 'Great job finding all the animals!';
         document.getElementById('next-level-btn').style.display = 'inline-block';
+        document.getElementById('celebration-new-game-btn').style.display = 'none';
     }
     
     playWinSound();
@@ -418,8 +433,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.getElementById('new-game-btn').addEventListener('click', () => startNewGame(true));
     document.getElementById('hint-btn').addEventListener('click', showHint);
-    document.getElementById('play-again-btn').addEventListener('click', () => startNewGame(true));
     document.getElementById('next-level-btn').addEventListener('click', startNextLevel);
+    document.getElementById('celebration-new-game-btn').addEventListener('click', () => startNewGame(true));
     document.getElementById('restart-btn').addEventListener('click', () => startNewGame(true));
     
     // Start the first game

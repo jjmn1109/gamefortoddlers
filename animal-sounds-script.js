@@ -6,7 +6,7 @@ let gameState = {
             name: 'Cow', 
             sound: 'moo',
             audioUrls: [
-                '/animal-sounds/cow-moo.wav'
+                'animal-sounds/cow-moo.wav'
             ]
         },
         { 
@@ -14,7 +14,7 @@ let gameState = {
             name: 'Dog', 
             sound: 'woof',
             audioUrls: [
-                '/animal-sounds/dog-woof.wav'
+                'animal-sounds/dog-woof.wav'
             ]
         },
         { 
@@ -22,7 +22,7 @@ let gameState = {
             name: 'Cat', 
             sound: 'meow',
             audioUrls: [
-                '/animal-sounds/cat-meow.wav'
+                'animal-sounds/cat-meow.wav'
             ]
         },
         { 
@@ -30,7 +30,7 @@ let gameState = {
             name: 'Frog', 
             sound: 'ribbit',
             audioUrls: [
-                '/animal-sounds/frog-ribbit.mp3'
+                'animal-sounds/frog-ribbit.mp3'
             ]
         },
         { 
@@ -38,7 +38,7 @@ let gameState = {
             name: 'Monkey', 
             sound: 'ooh-ooh',
             audioUrls: [
-                '/animal-sounds/monkey-ooh-ooh.wav'
+                'animal-sounds/monkey-ooh-ooh.wav'
             ]
         },
         { 
@@ -46,7 +46,7 @@ let gameState = {
             name: 'Pig', 
             sound: 'oink',
             audioUrls: [
-                '/animal-sounds/pig-oink.wav'
+                'animal-sounds/pig-oink.wav'
             ]
         },
         { 
@@ -54,7 +54,7 @@ let gameState = {
             name: 'Duck', 
             sound: 'quack',
             audioUrls: [
-                '/animal-sounds/duck-quack.mp3'
+                'animal-sounds/duck-quack.mp3'
             ]
         },
         { 
@@ -62,7 +62,7 @@ let gameState = {
             name: 'Chicken', 
             sound: 'cluck',
             audioUrls: [
-                '/animal-sounds/chicken-cluck.wav'
+                'animal-sounds/chicken-cluck.wav'
             ]
         },
         { 
@@ -70,7 +70,7 @@ let gameState = {
             name: 'Horse', 
             sound: 'neigh',
             audioUrls: [
-                '/animal-sounds/horse-neigh.wav'
+                'animal-sounds/horse-neigh.wav'
             ]
         },
         { 
@@ -78,7 +78,7 @@ let gameState = {
             name: 'Sheep', 
             sound: 'baa',
             audioUrls: [
-                '/animal-sounds/sheep-baa.wav'
+                'animal-sounds/sheep-baa.wav'
             ]
         }
     ],
@@ -419,7 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     document.getElementById('next-level-btn').addEventListener('click', nextLevel);
-    document.getElementById('play-again-btn').addEventListener('click', startNewGame);
     document.getElementById('restart-btn').addEventListener('click', startNewGame);
     
     // Start the first game

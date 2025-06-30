@@ -68,7 +68,6 @@ class PopBubblesGame {
         
         // Modal buttons - Level complete modal
         document.getElementById('next-level-btn').addEventListener('click', () => this.nextLevel());
-        document.getElementById('replay-level-btn').addEventListener('click', () => this.restart());
         
         // Game complete modal  
         document.getElementById('play-again-btn').addEventListener('click', () => this.playAgain());
