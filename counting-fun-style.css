@@ -248,6 +248,13 @@ body::before {
     animation: wrongShake 0.5s ease-out;
 }
 
+.number-btn.clicked {
+    pointer-events: none;
+    opacity: 0.7;
+    transform: scale(0.9);
+    transition: all 0.1s ease;
+}
+
 @keyframes correctPulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.3); }

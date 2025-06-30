@@ -219,6 +219,13 @@ body {
     animation: wrongAnswer 0.5s ease;
 }
 
+.animal-option.clicked {
+    pointer-events: none;
+    opacity: 0.7;
+    transform: scale(0.95);
+    transition: all 0.1s ease;
+}
+
 @keyframes correctAnswer {
     0% { transform: scale(1); }
     50% { transform: scale(1.2); }

@@ -317,6 +317,13 @@ body::before {
     animation: success-pulse 0.8s ease-in-out;
 }
 
+.shape-hole.used {
+    pointer-events: none;
+    opacity: 0.6;
+    transform: scale(0.95);
+    transition: all 0.1s ease;
+}
+
 @keyframes glow-hole {
     from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
     to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); }

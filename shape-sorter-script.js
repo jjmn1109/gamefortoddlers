@@ -408,6 +408,14 @@ class ShapeSorterGame {
 
     handleDrop(hole, draggedShape) {
         if (!hole || !draggedShape || this.isPaused) return;
+        
+        // Check if this hole has already been used or if the shape has already been placed
+        if (hole.classList.contains('used') || hole.classList.contains('correct') || draggedShape.classList.contains('placed')) {
+            return; // Prevent multiple drops on the same hole or with the same shape
+        }
+        
+        // Add used class to prevent rapid drops
+        hole.classList.add('used');
 
         this.clearHighlights();
         
@@ -437,6 +445,7 @@ class ShapeSorterGame {
             hole.style.background = 'rgba(255, 0, 0, 0.3)';
             setTimeout(() => {
                 hole.style.background = '';
+                hole.classList.remove('used'); // Allow trying again for wrong answers
             }, 600);
         }
 

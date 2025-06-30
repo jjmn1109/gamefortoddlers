@@ -320,6 +320,15 @@ function displayAnimals() {
 function handleAnimalClick(selectedAnimal) {
     if (gameState.isPlaying) return; // Don't allow clicks during sound playback
     
+    // Check if this animal element has already been clicked
+    const animalElement = document.querySelector(`[data-animal="${selectedAnimal.name}"]`);
+    if (animalElement.classList.contains('clicked') || animalElement.classList.contains('correct') || animalElement.classList.contains('wrong')) {
+        return; // Prevent multiple clicks on the same animal
+    }
+    
+    // Add clicked class to prevent rapid clicks
+    animalElement.classList.add('clicked');
+    
     const animalElements = document.querySelectorAll('.animal-option');
     
     if (selectedAnimal.name === gameState.currentAnimal.name) {
@@ -348,6 +357,7 @@ function handleAnimalClick(selectedAnimal) {
         
         setTimeout(() => {
             wrongElement.classList.remove('wrong');
+            wrongElement.classList.remove('clicked'); // Allow clicking again for wrong answers
         }, 500);
     }
 }

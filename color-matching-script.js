@@ -313,6 +313,14 @@ class ColorMatchingGame {
 
     selectColor(selectedColor, element) {
         if (this.isPaused) return;
+        
+        // Check if this element has already been clicked
+        if (element.classList.contains('clicked') || element.classList.contains('correct') || element.classList.contains('incorrect')) {
+            return; // Prevent multiple clicks on the same element
+        }
+        
+        // Add clicked class to prevent rapid clicks
+        element.classList.add('clicked');
 
         // Disable all color options temporarily
         const allOptions = document.querySelectorAll('.color-option');
@@ -333,7 +341,7 @@ class ColorMatchingGame {
                 // Re-enable color options
                 allOptions.forEach(option => {
                     option.style.pointerEvents = 'auto';
-                    option.classList.remove('correct', 'incorrect');
+                    option.classList.remove('correct', 'incorrect', 'clicked');
                 });
             }, 1000);
         } else {
@@ -343,7 +351,7 @@ class ColorMatchingGame {
             this.streak = 0;
             
             setTimeout(() => {
-                element.classList.remove('incorrect');
+                element.classList.remove('incorrect', 'clicked');
                 // Re-enable color options
                 allOptions.forEach(option => {
                     option.style.pointerEvents = 'auto';

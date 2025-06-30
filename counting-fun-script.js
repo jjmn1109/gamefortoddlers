@@ -222,11 +222,18 @@ class CountingFunGame {
     selectAnswer(selectedNumber) {
         if (this.isAnswering || this.isPaused) return;
         
+        // Find the clicked button and check if it's already been clicked
+        const clickedButton = this.numberOptions.querySelector(`[data-number="${selectedNumber}"]`);
+        if (clickedButton.classList.contains('clicked') || clickedButton.classList.contains('correct') || clickedButton.classList.contains('wrong')) {
+            return; // Prevent multiple clicks on the same button
+        }
+        
+        // Add clicked class to prevent rapid clicks
+        clickedButton.classList.add('clicked');
+        
         this.isAnswering = true;
         const correct = selectedNumber === this.currentAnswer;
         
-        // Find the clicked button
-        const clickedButton = this.numberOptions.querySelector(`[data-number="${selectedNumber}"]`);
         const correctButton = this.numberOptions.querySelector(`[data-number="${this.currentAnswer}"]`);
         
         if (correct) {
