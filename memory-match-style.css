@@ -1,0 +1,420 @@
+/* Memory Match Game Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Music toggle button */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.music-toggle.muted {
+    opacity: 0.5;
+}
+
+/* Game container */
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.game-header h1 {
+    color: #4a5568;
+    font-size: 2rem;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.back-btn, .pause-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover, .pause-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Game info */
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    text-align: center;
+}
+
+.info-item .label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.info-item .value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+/* Instructions */
+.instructions {
+    text-align: center;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h2 {
+    color: #4a5568;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.instructions p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Memory grid */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    background: linear-gradient(45deg, #ff9a9e, #fecfef);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.memory-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.memory-card.flipped {
+    transform: rotateY(180deg);
+    background: white;
+}
+
+.memory-card.matched {
+    background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+    transform: scale(0.95);
+    animation: matchedPulse 0.6s ease-in-out;
+}
+
+.memory-card .card-front,
+.memory-card .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.memory-card .card-front {
+    background: linear-gradient(45deg, #ff9a9e, #fecfef);
+    transform: rotateY(0deg);
+}
+
+.memory-card .card-back {
+    background: white;
+    transform: rotateY(180deg);
+    font-size: 2.5rem;
+}
+
+@keyframes matchedPulse {
+    0%, 100% { transform: scale(0.95); }
+    50% { transform: scale(1.1); }
+}
+
+/* Progress container */
+.progress-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.progress-text {
+    font-size: 1.1rem;
+    color: #4a5568;
+    font-weight: bold;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-content.celebration {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-content h2 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.stats {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.stats p {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #4a5568;
+}
+
+.stars {
+    margin: 20px 0;
+}
+
+.star {
+    font-size: 2rem;
+    margin: 0 5px;
+    animation: starTwinkle 1s ease-in-out infinite alternate;
+}
+
+.star:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.star:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes starTwinkle {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1.2) rotate(10deg); }
+}
+
+.fireworks {
+    margin: 20px 0;
+}
+
+.firework {
+    font-size: 2rem;
+    margin: 0 10px;
+    animation: fireworkExplode 1s ease-out infinite;
+}
+
+.firework:nth-child(2) { animation-delay: 0.2s; }
+.firework:nth-child(3) { animation-delay: 0.4s; }
+.firework:nth-child(4) { animation-delay: 0.6s; }
+.firework:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes fireworkExplode {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+    100% { transform: scale(2) rotate(360deg); opacity: 0; }
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .game-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    
+    .memory-card {
+        font-size: 2rem;
+    }
+    
+    .modal-content {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 400px) {
+    .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+} 
