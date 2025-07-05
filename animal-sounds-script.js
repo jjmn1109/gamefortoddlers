@@ -1,14 +1,14 @@
 // Animal Sounds Game Logic
 let gameState = {
     animals: [
-        { 
+        /*{ 
             emoji: '🐄', 
             name: 'Cow', 
             sound: 'moo',
             audioUrls: [
                 'animal-sounds/cow-moo.wav'
             ]
-        },
+        },*/
         { 
             emoji: '🐶', 
             name: 'Dog', 
