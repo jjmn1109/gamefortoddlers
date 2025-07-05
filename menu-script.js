@@ -36,6 +36,9 @@ function playGame(gameId) {
             case 'music-maker':
                 window.location.href = 'music-maker.html';
                 break;
+            case 'catch-frog':
+                window.location.href = 'catch-frog.html';
+                break;
             default:
                 hideLoading();
                 alert('🚧 This game is coming soon! Stay tuned for more fun! 🚧');
@@ -72,7 +75,8 @@ function getGameTitle(gameId) {
         'shape-sorter': 'Shape Sorter',
         'memory-match': 'Memory Match',
         'letter-learning': 'Letter Learning',
-        'music-maker': 'Music Maker'
+        'music-maker': 'Music Maker',
+        'catch-frog': 'Catch the Frog'
     };
     return titles[gameId] || 'Game';
 }
