@@ -80,6 +80,86 @@ let gameState = {
             audioUrls: [
                 'animal-sounds/sheep-baa.wav'
             ]
+        },
+        { 
+            emoji: '🦁', 
+            name: 'Lion', 
+            sound: 'roar',
+            audioUrls: [
+                'animal-sounds/lion-roar.mp3'
+            ]
+        },
+        { 
+            emoji: '🐘', 
+            name: 'Elephant', 
+            sound: 'trumpet',
+            audioUrls: [
+                'animal-sounds/elephant-trumpet.mp3'
+            ]
+        },
+        { 
+            emoji: '🐍', 
+            name: 'Snake', 
+            sound: 'hiss',
+            audioUrls: [
+                'animal-sounds/snake-hiss.mp3'
+            ]
+        },
+        { 
+            emoji: '🐦', 
+            name: 'Bird', 
+            sound: 'chirp',
+            audioUrls: [
+                'animal-sounds/bird-chirp.mp3'
+            ]
+        },
+        { 
+            emoji: '🐝', 
+            name: 'Bee', 
+            sound: 'buzz',
+            audioUrls: [
+                'animal-sounds/bee-buzz.mp3'
+            ]
+        },
+        { 
+            emoji: '🐭', 
+            name: 'Mouse', 
+            sound: 'squeak',
+            audioUrls: [
+                'animal-sounds/mouse-squeak.mp3'
+            ]
+        },
+        { 
+            emoji: '🐻', 
+            name: 'Bear', 
+            sound: 'growl',
+            audioUrls: [
+                'animal-sounds/bear-growl.mp3'
+            ]
+        },
+        { 
+            emoji: '🐯', 
+            name: 'Tiger', 
+            sound: 'roar',
+            audioUrls: [
+                'animal-sounds/tiger-roar.mp3'
+            ]
+        },
+        { 
+            emoji: '🦉', 
+            name: 'Owl', 
+            sound: 'hoot',
+            audioUrls: [
+                'animal-sounds/owl-hoot.mp3'
+            ]
+        },
+        { 
+            emoji: '🐐', 
+            name: 'Goat', 
+            sound: 'bleat',
+            audioUrls: [
+                'animal-sounds/goat-bleat.mp3'
+            ]
         }
     ],
     currentLevel: 1,
