@@ -139,6 +139,9 @@ class MemoryGame {
             cardElement.addEventListener('click', () => this.flipCard(card));
             grid.appendChild(cardElement);
         });
+        
+        // Force a reflow to ensure proper rendering
+        grid.offsetHeight;
     }
     
     flipCard(card) {
@@ -181,15 +184,30 @@ class MemoryGame {
             const card1Element = document.querySelector(`[data-id="${card1.id}"]`);
             const card2Element = document.querySelector(`[data-id="${card2.id}"]`);
             
-            card1Element.classList.add('matched');
-            card2Element.classList.add('matched');
-            
-            this.playSound('match');
-            
-            // Check if level is complete
-            if (this.matchedPairs === this.cards.length / 2) {
-                setTimeout(() => this.completeLevel(), 1000);
-            }
+            // Wait for both cards to be fully flipped open, then show match animation
+            setTimeout(() => {
+                // Add matched animation
+                card1Element.classList.add('matched');
+                card2Element.classList.add('matched');
+                
+                this.playSound('match');
+                
+                // Hide matched cards after match animation completes
+                setTimeout(() => {
+                    card1Element.style.animation = 'cardRemove 0.5s ease-out forwards';
+                    card2Element.style.animation = 'cardRemove 0.5s ease-out forwards';
+                    
+                    setTimeout(() => {
+                        card1Element.classList.add('hidden');
+                        card2Element.classList.add('hidden');
+                        
+                        // Check if level is complete
+                        if (this.matchedPairs === this.cards.length / 2) {
+                            setTimeout(() => this.completeLevel(), 500);
+                        }
+                    }, 500);
+                }, 600); // Wait for matched animation to complete
+            }, 300); // Wait for second card to fully flip open
         } else {
             // No match, flip cards back
             setTimeout(() => {
@@ -256,10 +274,21 @@ class MemoryGame {
         document.getElementById('level-display').textContent = this.currentLevel;
         document.getElementById('moves-display').textContent = this.moves;
         
-        const progress = (this.matchedPairs / (this.cards.length / 2)) * 100;
-        document.querySelector('.progress-bar::before').style.width = `${progress}%`;
+        const totalPairs = this.cards.length / 2;
+        const remainingPairs = totalPairs - this.matchedPairs;
+        const progress = (this.matchedPairs / totalPairs) * 100;
+        
+        // Update progress bar
+        const progressBar = document.querySelector('.progress-bar');
+        if (progressBar) {
+            progressBar.style.setProperty('--progress', `${progress}%`);
+        }
+        
+        // Update progress info
+        document.getElementById('found-pairs').textContent = this.matchedPairs;
+        document.getElementById('remaining-pairs').textContent = remainingPairs;
         document.getElementById('progress-text').textContent = 
-            `${this.matchedPairs} / ${this.cards.length / 2} pairs found`;
+            `${remainingPairs} pairs remaining`;
     }
     
     togglePause() {

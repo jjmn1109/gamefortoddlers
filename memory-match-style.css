@@ -138,11 +138,12 @@ body {
 .memory-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 20px;
-    max-width: 500px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    padding: 20px;
 }
 
 .memory-card {
@@ -158,6 +159,8 @@ body {
     transform-style: preserve-3d;
     position: relative;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    min-height: 80px;
+    min-width: 80px;
 }
 
 .memory-card:hover {
@@ -167,13 +170,23 @@ body {
 
 .memory-card.flipped {
     transform: rotateY(180deg);
-    background: white;
 }
 
 .memory-card.matched {
     background: linear-gradient(45deg, #a8e6cf, #dcedc1);
     transform: scale(0.95);
     animation: matchedPulse 0.6s ease-in-out;
+}
+
+.memory-card.hidden {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px dashed #ccc;
+    pointer-events: none;
+}
+
+.memory-card.hidden .card-front,
+.memory-card.hidden .card-back {
+    opacity: 0;
 }
 
 .memory-card .card-front,
@@ -186,22 +199,42 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 15px;
+    font-size: 2.5rem;
+    font-weight: bold;
 }
 
 .memory-card .card-front {
     background: linear-gradient(45deg, #ff9a9e, #fecfef);
     transform: rotateY(0deg);
+    color: #4a5568;
 }
 
 .memory-card .card-back {
     background: white;
     transform: rotateY(180deg);
-    font-size: 2.5rem;
+    color: #4a5568;
 }
 
 @keyframes matchedPulse {
     0%, 100% { transform: scale(0.95); }
     50% { transform: scale(1.1); }
+}
+
+@keyframes cardRemove {
+    0% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 1; 
+        visibility: visible;
+    }
+    50% { 
+        transform: scale(1.1) rotate(5deg); 
+        opacity: 0.5; 
+    }
+    100% { 
+        transform: scale(0.9) rotate(0deg); 
+        opacity: 0; 
+        visibility: hidden;
+    }
 }
 
 /* Progress container */
@@ -211,6 +244,22 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.found-pairs {
+    color: #4ecdc4;
+}
+
+.remaining-pairs {
+    color: #ff6b6b;
 }
 
 .progress-bar {
@@ -229,7 +278,7 @@ body {
     background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
     border-radius: 10px;
     transition: width 0.3s ease;
-    width: 0%;
+    width: var(--progress, 0%);
 }
 
 .progress-text {
@@ -391,10 +440,18 @@ body {
     
     .memory-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+        gap: 10px;
+        max-width: 400px;
     }
     
     .memory-card {
+        font-size: 2rem;
+        min-height: 60px;
+        min-width: 60px;
+    }
+    
+    .memory-card .card-front,
+    .memory-card .card-back {
         font-size: 2rem;
     }
     
@@ -411,6 +468,18 @@ body {
 @media (max-width: 400px) {
     .memory-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        max-width: 300px;
+    }
+    
+    .memory-card {
+        min-height: 50px;
+        min-width: 50px;
+    }
+    
+    .memory-card .card-front,
+    .memory-card .card-back {
+        font-size: 1.5rem;
     }
     
     .game-info {
