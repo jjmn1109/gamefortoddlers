@@ -1,0 +1,470 @@
+/* Catch the Frog Game Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Music toggle button */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.music-toggle.muted {
+    opacity: 0.5;
+}
+
+/* Game container */
+.game-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.game-header h1 {
+    color: #4a5568;
+    font-size: 2rem;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.back-btn, .pause-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover, .pause-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Game info */
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    text-align: center;
+}
+
+.info-item .label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.info-item .value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+/* Instructions */
+.instructions {
+    text-align: center;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h2 {
+    color: #4a5568;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.instructions p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Game area */
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(180deg, #87CEEB 0%, #4682B4 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    border: 3px solid #2F4F4F;
+}
+
+/* Frog */
+.frog {
+    position: absolute;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+    user-select: none;
+    animation: frogBounce 0.5s ease-in-out infinite alternate;
+}
+
+.frog:hover {
+    transform: scale(1.1);
+}
+
+.frog.caught {
+    animation: frogCaught 0.5s ease-out forwards;
+}
+
+@keyframes frogBounce {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-5px); }
+}
+
+@keyframes frogCaught {
+    0% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 1; 
+    }
+    50% { 
+        transform: scale(1.3) rotate(10deg); 
+        opacity: 0.8; 
+    }
+    100% { 
+        transform: scale(0) rotate(20deg); 
+        opacity: 0; 
+    }
+}
+
+/* Lily pads */
+.lily-pads {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.lily-pad {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.7;
+    animation: lilyFloat 3s ease-in-out infinite;
+}
+
+.lily-pad:nth-child(1) { left: 10%; bottom: 20%; animation-delay: 0s; }
+.lily-pad:nth-child(2) { left: 30%; bottom: 15%; animation-delay: 0.5s; }
+.lily-pad:nth-child(3) { left: 50%; bottom: 25%; animation-delay: 1s; }
+.lily-pad:nth-child(4) { left: 70%; bottom: 10%; animation-delay: 1.5s; }
+.lily-pad:nth-child(5) { left: 85%; bottom: 20%; animation-delay: 2s; }
+
+@keyframes lilyFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Progress container */
+.progress-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar::before {
+    content: '';
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #32CD32, #228B22);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    width: var(--progress, 0%);
+}
+
+.progress-text {
+    font-size: 1.1rem;
+    color: #4a5568;
+    font-weight: bold;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-content.celebration {
+    background: linear-gradient(135deg, #98FB98, #90EE90);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-content h2 {
+    color: #4a5568;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.stats {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.stats p {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #4a5568;
+}
+
+.frog-celebration {
+    margin: 20px 0;
+}
+
+.frog-bounce {
+    font-size: 4rem;
+    animation: celebrationBounce 1s ease-in-out infinite;
+}
+
+@keyframes celebrationBounce {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.2) translateY(-20px); }
+}
+
+.frog-party {
+    margin: 20px 0;
+}
+
+.party-frog {
+    font-size: 2.5rem;
+    margin: 0 10px;
+    animation: partyJump 1s ease-in-out infinite;
+}
+
+.party-frog:nth-child(2) { animation-delay: 0.2s; }
+.party-frog:nth-child(3) { animation-delay: 0.4s; }
+.party-frog:nth-child(4) { animation-delay: 0.6s; }
+.party-frog:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes partyJump {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(10deg); }
+}
+
+.stars {
+    margin: 20px 0;
+}
+
+.star {
+    font-size: 2rem;
+    margin: 0 5px;
+    animation: starTwinkle 1s ease-in-out infinite alternate;
+}
+
+.star:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.star:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes starTwinkle {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1.2) rotate(10deg); }
+}
+
+.fireworks {
+    margin: 20px 0;
+}
+
+.firework {
+    font-size: 2rem;
+    margin: 0 10px;
+    animation: fireworkExplode 1s ease-out infinite;
+}
+
+.firework:nth-child(2) { animation-delay: 0.2s; }
+.firework:nth-child(3) { animation-delay: 0.4s; }
+.firework:nth-child(4) { animation-delay: 0.6s; }
+.firework:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes fireworkExplode {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+    100% { transform: scale(2) rotate(360deg); opacity: 0; }
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #32CD32, #228B22);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .game-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .game-area {
+        height: 300px;
+    }
+    
+    .frog {
+        font-size: 2.5rem;
+    }
+    
+    .lily-pad {
+        font-size: 1.5rem;
+    }
+    
+    .modal-content {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .game-area {
+        height: 250px;
+    }
+    
+    .frog {
+        font-size: 2rem;
+    }
+} 
