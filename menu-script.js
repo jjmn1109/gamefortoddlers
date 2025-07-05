@@ -27,6 +27,15 @@ function playGame(gameId) {
             case 'counting':
                 window.location.href = 'counting-fun.html';
                 break;
+            case 'memory-match':
+                window.location.href = 'memory-match.html';
+                break;
+            case 'letter-learning':
+                window.location.href = 'letter-learning.html';
+                break;
+            case 'music-maker':
+                window.location.href = 'music-maker.html';
+                break;
             default:
                 hideLoading();
                 alert('🚧 This game is coming soon! Stay tuned for more fun! 🚧');
@@ -60,7 +69,10 @@ function getGameTitle(gameId) {
         'pop-bubbles': 'Pop the Bubbles',
         'counting': 'Counting Fun',
         'color-matching': 'Color Matching',
-        'shape-sorter': 'Shape Sorter'
+        'shape-sorter': 'Shape Sorter',
+        'memory-match': 'Memory Match',
+        'letter-learning': 'Letter Learning',
+        'music-maker': 'Music Maker'
     };
     return titles[gameId] || 'Game';
 }
