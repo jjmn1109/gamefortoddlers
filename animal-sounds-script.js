@@ -254,7 +254,7 @@ async function playAnimalSound(animal) {
     const soundWaves = document.getElementById('sound-waves');
     
     soundButton.classList.add('playing');
-    soundWaves.classList.add('active');
+    //soundWaves.classList.add('active');
     gameState.isPlaying = true;
     
     try {
@@ -518,9 +518,9 @@ function stopCurrentSound() {
     
     // Reset visual effects
     const soundButton = document.getElementById('play-sound-btn');
-    const soundWaves = document.getElementById('sound-waves');
+    //const soundWaves = document.getElementById('sound-waves');
     soundButton.classList.remove('playing');
-    soundWaves.classList.remove('active');
+    //soundWaves.classList.remove('active');
     gameState.isPlaying = false;
 }
 
