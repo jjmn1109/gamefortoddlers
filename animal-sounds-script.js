@@ -152,7 +152,7 @@ let gameState = {
             audioUrls: [
                 'animal-sounds/owl-hoot.mp3'
             ]
-        },
+        }/*,
         { 
             emoji: '🐐', 
             name: 'Goat', 
@@ -160,7 +160,7 @@ let gameState = {
             audioUrls: [
                 'animal-sounds/goat-bleat.mp3'
             ]
-        }
+        }*/
     ],
     currentLevel: 1,
     score: 0,
